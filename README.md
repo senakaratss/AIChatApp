@@ -149,15 +149,6 @@ Sade, modern ve göz yormayan bir **pastel renk paleti** kullanılmıştır.
 
 ---
 
-## 🗺️ Yol Haritası
-
-- [ ] 🌍 Çoklu dil desteği
-- [ ] 📎 Dosya / görsel yükleme
-- [ ] 🔎 Sohbetlerde arama
-- [ ] 🌙 Karanlık tema
-- [ ] 🎭 Farklı AI ses seçenekleri
-
----
 
 ## 🎬 Demo Videosu
 
