@@ -1,0 +1,24 @@
+﻿@using AIChatApp.Application.Features.Conversations.Results
+@model List<GetConversationsQueryResult>
+
+<!-- ============ CONVERSATION LIST (static/mock) ============ -->
+<nav class="conversation-list" aria-label="Sohbet geçmişi">
+    @foreach (var item in Model)
+    {
+        <a asp-controller="Chat" asp-action="Index" asp-route-id="@item.ConversationId" class="conversation-item" 
+        data-conversation="@item.ConversationId">
+
+            <svg class="conversation-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.8"
+                      stroke-linejoin="round" />
+            </svg>
+            <span>@item.Title</span>
+        </a>
+    }
+</nav>
+
+@* <p class="conversation-group-label">Bugün</p>
+<p class="conversation-group-label">Dün</p>
+<p class="conversation-group-label">Son 7 Gün</p>
+
+ *@

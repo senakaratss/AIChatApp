@@ -1,0 +1,245 @@
+﻿@model ConversationViewModel
+@{
+    ViewData["Title"] = "Conversation";
+    ViewData["ChatTitle"] = Model.Title;
+    Layout = "~/Views/Shared/_ChatLayout.cshtml";
+}
+
+<section class="message-thread" id="messageThread">
+    @foreach (var msg in Model.Messages)
+    {
+        @if (msg.Role == "user")
+        {
+            <article class="message message--user">
+                <div class="message-body">
+                    <div class="message-meta message-meta--right">
+                        <span class="message-author">Sen</span>
+                        <span class="message-time">@msg.CreatedAt.ToString("HH:mm")</span>
+                    </div>
+                    <div class="message-bubble message-bubble--user">
+                        <p>
+                            @msg.Content
+                        </p>
+                    </div>
+                </div>
+                <span class="message-avatar message-avatar--user">@Model.UserInitials</span>
+            </article>
+        }
+        else
+        {
+            <article class="message message--ai">
+                <span class="message-avatar message-avatar--ai">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="currentColor" />
+                    </svg>
+                </span>
+                <div class="message-body">
+                    <div class="message-meta">
+                        <span class="message-author">Aura Asistan</span>
+                        <span class="message-time">@msg.CreatedAt.ToString("HH:mm")</span>
+                    </div>
+                    <div class="message-bubble message-bubble--ai">
+                        <p>
+                            @msg.Content
+                        </p>
+                    </div>
+                    <div class="message-actions">
+                        <button class="text-btn" type="button">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6" />
+                                <path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.6" />
+                            </svg>
+                            Kopyala
+                        </button>
+                        <button class="text-btn" type="button">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10v11M2 10h3v11H2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                                <path d="M7 10l2.5-7a1.8 1.8 0 0 1 3.4 1.2L11.5 9H19a2 2 0 0 1 1.94 2.5l-1.6 7A2 2 0 0 1 17.4 20H7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                            </svg>
+                            Faydalı
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        }
+    }
+
+
+
+    @*  <article class="message message--ai">
+        <span class="message-avatar message-avatar--ai">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="currentColor" />
+            </svg>
+        </span>
+        <div class="message-body">
+            <div class="message-meta">
+                <span class="message-author">Claude 3.5 Sonnet</span>
+                <span class="message-time">10:44</span>
+            </div>
+            <div class="message-bubble message-bubble--ai">
+                <p>
+                    İşte sayfayı temiz bir şekilde sunarken gerçek zamanlı akışı backend hub'ına
+                    devreden, hafif ve production-ready bir ASP.NET Core Controller / Razor View yapısı:
+                </p>
+
+                <div class="code-block">
+                    <div class="code-block-header">
+                        <span class="code-lang">C# &middot; HOMECONTROLLER.CS</span>
+                        <button class="code-copy-btn" type="button">Kodu Kopyala</button>
+                    </div>
+                    <pre class="code-block-body"><code>public class ChatController : Controller
+{
+    private readonly IAiConversationService _aiService;
+    private readonly ILogger&lt;ChatController&gt; _logger;
+
+    public ChatController(
+        IAiConversationService aiService,
+        ILogger&lt;ChatController&gt; logger)
+    {
+        _aiService = aiService;
+        _logger = logger;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+}</code></pre>
+                </div>
+            </div>
+            <div class="message-actions">
+                <button class="text-btn" type="button">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6" />
+                        <path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.6" />
+                    </svg>
+                    Kopyala
+                </button>
+                <button class="text-btn" type="button">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10v11M2 10h3v11H2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                        <path d="M7 10l2.5-7a1.8 1.8 0 0 1 3.4 1.2L11.5 9H19a2 2 0 0 1 1.94 2.5l-1.6 7A2 2 0 0 1 17.4 20H7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                    </svg>
+                    Faydalı
+                </button>
+            </div>
+        </div>
+    </article> *@
+
+</section>
+<!-- ===================== MESSAGE INPUT (UI only) ===================== -->
+<footer class="composer">
+    <form id="chatForm">
+        <div class="composer-box">
+            <input type="hidden" name="ConversationId" value="@Model.ConversationId" />
+            <textarea id="messageInput" class="composer-input" name="Content" rows="1"
+                      placeholder="Aura'ya bir şey sor, kod yapıştır ya da mikrofona tıklayıp konuş..."></textarea>
+            <div class="composer-toolbar">
+                <div class="composer-toolbar-left">
+                    <button class="icon-btn" type="button" id="attachBtn" aria-label="Dosya ekle">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.44 11.05l-9.19 9.19a5.5 5.5 0 0 1-7.78-7.78l9.2-9.19a3.5 3.5 0 0 1 4.95 4.95l-9.2 9.19a1.5 1.5 0 0 1-2.12-2.12l8.49-8.48" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="icon-btn" type="button" id="micBtn" aria-label="Sesli not">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.6" />
+                            <path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                    <button class="icon-btn" type="button" id="emojiBtn" aria-label="Emoji ekle">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+                            <path d="M8.5 10.5h.01M15.5 10.5h.01M8 15c1 1.2 2.3 1.8 4 1.8s3-.6 4-1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+                <button class="send-btn" type="button" id="sendBtn" aria-label="Gönder" disabled>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12L20 4L14 20L11 13L4 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </form>
+    <p class="composer-disclaimer">Aura AI hata yapabilir. Önemli teknik ve alan bilgilerini doğrulayın.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+<script>
+    const connection=new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+    const conversationId=@Model.ConversationId;
+
+    connection.start().then(function(){
+        console.log("SignalR connected");
+    }).catch(function(err){
+        console.error(err.toString());
+    })
+
+    document.getElementById("sendBtn").addEventListener("click",async function(){
+        const input=document.getElementById("messageInput");
+        const message=input.value.trim();
+        if(!message) return;
+
+        await connection.invoke("SendMessage",conversationId,message);
+        input.value="";
+    });
+
+    connection.on("ReceiveMessage",function(conversationId,message,role){
+        console.log("Conversation:",conversationId);
+        console.log("Message:",message);
+        console.log("Role:",role);
+
+        const messageThread=document.getElementById("messageThread");
+        const article=document.createElement("article")
+
+        if(role=="user"){
+            article.className="message message--user";
+
+            article.innerHTML=`   <div class="message-body">
+                    <div class="message-meta message-meta--right">
+                        <span class="message-author">Sen</span>
+                        <span class="message-time"> ${new Date().toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        })}</span>
+                    </div>
+                    <div class="message-bubble message-bubble--user">
+                        <p>
+                            ${message}
+                        </p>
+                    </div>
+                </div>
+                <span class="message-avatar message-avatar--user">@Model.UserInitials</span>`;
+        }else{
+              article.className = "message message--ai";
+
+        article.innerHTML = `
+            <span class="message-avatar message-avatar--ai">
+                ✦
+            </span>
+
+            <div class="message-body">
+                <div class="message-meta">
+                    <span class="message-author">Aura Asistan</span>
+                    <span class="message-time">
+                        ${new Date().toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        })}
+                    </span>
+                </div>
+
+                <div class="message-bubble message-bubble--ai">
+                    <p>${message}</p>
+                </div>
+            </div>
+        `;
+        }
+        messageThread.appendChild(article);
+        messageThread.scrollTop=messageThread.scrollHeight;
+    });
+</script>

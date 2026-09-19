@@ -1,0 +1,730 @@
+﻿@model ConversationViewModel
+@{
+    ViewData["Title"] = "Sohbet";
+    if (Model.ConversationId.HasValue)
+    {
+        ViewData["ChatTitle"] = Model.Title;
+    }
+    else
+    {
+        ViewData["ChatTitle"] = "Yeni Sohbet";
+    }
+    Layout = "~/Views/Shared/_ChatLayout.cshtml";
+}
+
+<section class="message-thread" id="messageThread">
+
+    @if (Model.ConversationId.HasValue)
+    {
+        @foreach (var msg in Model.Messages)
+        {
+            @if (msg.Role == "user")
+            {
+                <article class="message message--user">
+
+                    <div class="message-body">
+
+                        <div class="message-meta message-meta--right">
+                            <span class="message-author">Sen</span>
+
+                            <span class="message-time">
+                                @msg.CreatedAt.ToString("HH:mm")
+                            </span>
+                        </div>
+
+                        <div class="message-bubble message-bubble--user">
+                            <p>@msg.Content</p>
+                        </div>
+
+                    </div>
+
+                    <span class="message-avatar message-avatar--user">
+                        @Model.UserInitials
+                    </span>
+
+                </article>
+            }
+            else
+            {
+                <article class="message message--ai">
+
+                    <span class="message-avatar message-avatar--ai">
+                        ✦
+                    </span>
+
+                    <div class="message-body">
+
+                        <div class="message-meta">
+                            <span class="message-author">
+                                Aura Asistan
+                            </span>
+
+                            <span class="message-time">
+                                @msg.CreatedAt.ToString("HH:mm")
+                            </span>
+                        </div>
+
+                        <div class="message-bubble message-bubble--ai">
+                            <div class="markdown-content" data-raw="@msg.Content"></div>
+
+                            <button type="button" class="listen-btn" data-text="@msg.Content" aria-label="Mesajı dinle">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" />
+                                    <path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                    <path d="M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6" />
+                                </svg>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+            }
+        }
+    }
+
+</section>
+
+
+@if (!Model.ConversationId.HasValue)
+{
+    <section class="empty-state" id="emptyState">
+
+        <div class="empty-state-icon">
+            <svg width="34"
+                 height="34"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                <circle cx="12"
+                        cy="12"
+                        r="3.2"
+                        stroke="currentColor"
+                        stroke-width="1.6" />
+
+                <circle cx="12"
+                        cy="12"
+                        r="9"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        opacity="0.45" />
+
+            </svg>
+        </div>
+
+        <h2 class="empty-state-title">
+            Aura bugün sana nasıl ilham versin?
+        </h2>
+
+        <p class="empty-state-subtitle">
+            Bir yapay zekâ modeli seç, düşüncelerini yaz ya da gerçek zamanlı bir
+            işbirliği oturumu başlatmak için sesli not kaydet.
+        </p>
+
+        <div class="suggestion-grid">
+
+            <button class="suggestion-card"
+                    type="button"
+                    data-prompt="Middleware'i yeniden düzenle">
+
+                <span class="suggestion-icon suggestion-icon--violet">
+                    <svg width="18"
+                         height="18"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <path d="M8 6L2 12L8 18"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
+
+                        <path d="M16 6L22 12L16 18"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
+
+                    </svg>
+                </span>
+
+                <span class="suggestion-text">
+                    <span class="suggestion-title">
+                        Middleware'i Yeniden Düzenle
+                    </span>
+
+                    <span class="suggestion-desc">
+                        Düşük gecikmeli ASP.NET Core akış kurulumu
+                    </span>
+                </span>
+
+            </button>
+
+
+            <button class="suggestion-card"
+                    type="button"
+                    data-prompt="Renk sistemi tasarımı oluştur">
+
+                <span class="suggestion-icon suggestion-icon--blue">
+                    <svg width="18"
+                         height="18"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <circle cx="12"
+                                cy="12"
+                                r="9"
+                                stroke="currentColor"
+                                stroke-width="1.8" />
+
+                        <path d="M12 3a9 9 0 0 1 0 18"
+                              stroke="currentColor"
+                              stroke-width="1.8" />
+
+                    </svg>
+                </span>
+
+                <span class="suggestion-text">
+
+                    <span class="suggestion-title">
+                        Renk Sistemi Tasarımı
+                    </span>
+
+                    <span class="suggestion-desc">
+                        Erişilebilir lavanta, nane ve pastel tonlar
+                    </span>
+
+                </span>
+
+            </button>
+
+
+            <button class="suggestion-card"
+                    type="button"
+                    data-prompt="Mimari özeti hazırla">
+
+                <span class="suggestion-icon suggestion-icon--rose">
+                    <svg width="18"
+                         height="18"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                              stroke="currentColor"
+                              stroke-width="1.6"
+                              stroke-linejoin="round" />
+
+                        <path d="M14 2v6h6"
+                              stroke="currentColor"
+                              stroke-width="1.6"
+                              stroke-linejoin="round" />
+
+                    </svg>
+                </span>
+
+                <span class="suggestion-text">
+
+                    <span class="suggestion-title">
+                        Mimari Özeti
+                    </span>
+
+                    <span class="suggestion-desc">
+                        SignalR ve Server-Sent Events arasındaki farklar
+                    </span>
+
+                </span>
+
+            </button>
+
+
+            <button class="suggestion-card"
+                    type="button"
+                    data-prompt="Konuşmadan metne testleri yaz">
+
+                <span class="suggestion-icon suggestion-icon--green">
+                    <svg width="18"
+                         height="18"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <path d="M20 6L9 17L4 12"
+                              stroke="currentColor"
+                              stroke-width="2.2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
+
+                    </svg>
+                </span>
+
+                <span class="suggestion-text">
+
+                    <span class="suggestion-title">
+                        Konuşmadan Metne Testleri
+                    </span>
+
+                    <span class="suggestion-desc">
+                        Ses akışı arabelleği için birim test taslakları
+                    </span>
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+}
+
+<!-- ===================== MESSAGE INPUT (UI only) ===================== -->
+<footer class="composer">
+    <div class="composer-box">
+        <form id="chatForm">
+            <textarea id="messageInput" name="Content" class="composer-input" rows="1"
+                      placeholder="Aura'ya bir şey sor, kod yapıştır ya da mikrofona tıklayıp konuş..."></textarea>
+            <div class="composer-toolbar">
+                <div class="composer-toolbar-left">
+                    <button class="icon-btn" type="button" id="attachBtn" aria-label="Dosya ekle">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.44 11.05l-9.19 9.19a5.5 5.5 0 0 1-7.78-7.78l9.2-9.19a3.5 3.5 0 0 1 4.95 4.95l-9.2 9.19a1.5 1.5 0 0 1-2.12-2.12l8.49-8.48" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="icon-btn" type="button" id="micBtn" aria-label="Sesli not">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.6" />
+                            <path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                    <button class="icon-btn" type="button" id="emojiBtn" aria-label="Emoji ekle">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+                            <path d="M8.5 10.5h.01M15.5 10.5h.01M8 15c1 1.2 2.3 1.8 4 1.8s3-.6 4-1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+                <button class="send-btn" type="button" id="sendBtn" aria-label="Gönder" disabled>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 12L20 4L14 20L11 13L4 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+    <p class="composer-disclaimer">Aura AI hata yapabilir. Önemli teknik ve alan bilgilerini doğrulayın.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+
+<script>
+
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .build();
+
+        // Eğer mevcut conversation varsa ID gelir.
+        // Yeni sohbette null olur.
+        let conversationId = @(Model.ConversationId.HasValue? Model.ConversationId.Value.ToString() : "null");
+        const userInitials = "@Model.UserInitials";
+
+        const messageThread = document.getElementById("messageThread");
+        const sendBtn = document.getElementById("sendBtn");
+
+        function scrollThreadToBottom() {
+            if (!messageThread) return;
+            messageThread.scrollTop = messageThread.scrollHeight;
+        }
+
+        /* -----------------------------------------------------
+           Markdown render (AI mesajları için)
+        ----------------------------------------------------- */
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        const mdRenderer = new marked.Renderer();
+
+        mdRenderer.code = function (code, infostring) {
+            const lang = (infostring || "").trim().split(/\s+/)[0] || "metin";
+            return `<div class="code-block">
+        <div class="code-block-header">
+            <span class="code-lang">${escapeHtml(lang)}</span>
+            <button type="button" class="code-copy-btn">Kopyala</button>
+        </div>
+        <pre class="code-block-body"><code>${escapeHtml(code)}</code></pre>
+    </div>`;
+        };
+
+        mdRenderer.codespan = function (code) {
+            return `<code class="inline-code">${escapeHtml(code)}</code>`;
+        };
+
+        marked.setOptions({
+            renderer: mdRenderer,
+            gfm: true,
+            breaks: true
+        });
+
+        function renderMarkdownSafe(rawText) {
+            const html = marked.parse(rawText || "");
+            return DOMPurify.sanitize(html, { ADD_ATTR: ["target"] });
+        }
+
+        function appendCursorTo(container) {
+            const cursor = document.createElement("span");
+            cursor.className = "typing-cursor";
+
+            let target = container;
+            while (target.lastElementChild) {
+                target = target.lastElementChild;
+            }
+            target.appendChild(cursor);
+        }
+
+        // Geçmiş konuşmadaki AI mesajlarını sayfa açılışında render et.
+        document.querySelectorAll(".markdown-content[data-raw]").forEach(function (el) {
+            const raw = el.getAttribute("data-raw");
+            el.innerHTML = renderMarkdownSafe(raw);
+            el.removeAttribute("data-raw");
+        });
+
+        connection.start()
+            .then(function () {
+                console.log("SignalR connected");
+                scrollThreadToBottom();
+            })
+            .catch(function (err) {
+                console.error(err.toString());
+            });
+
+        scrollThreadToBottom();
+
+        document.getElementById("sendBtn")
+            .addEventListener("click", async function () {
+
+                const input = document.getElementById("messageInput");
+                const message = input.value.trim();
+
+                if (!message) {
+                    return;
+                }
+
+                try {
+                    input.value = "";
+                    input.style.height = "auto";
+                    sendBtn.disabled = true;
+                    await connection.invoke("SendMessage", conversationId, message);
+                }
+                catch (err) {
+                    console.error(err.toString());
+                    sendBtn.disabled = false;
+                }
+            });
+
+        connection.on("ReceiveMessage", function (newConversationId, message, role) {
+
+            if (conversationId === null) {
+                conversationId = newConversationId;
+                history.pushState(null, "", `/Chat/Index/${newConversationId}`);
+            }
+
+            const emptyState = document.getElementById("emptyState");
+            if (emptyState) {
+                emptyState.style.display = "none";
+            }
+
+            const article = document.createElement("article");
+
+            if (role === "user") {
+
+                article.className = "message message--user";
+
+                article.innerHTML = `
+                    <div class="message-body">
+                        <div class="message-meta message-meta--right">
+                            <span class="message-author">Sen</span>
+                            <span class="message-time">
+                                ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                            </span>
+                        </div>
+                        <div class="message-bubble message-bubble--user">
+                            <p>${escapeHtml(message)}</p>
+                        </div>
+                    </div>
+                    <span class="message-avatar message-avatar--user">${userInitials}</span>
+                `;
+
+                messageThread.appendChild(article);
+                scrollThreadToBottom();
+            }
+        });
+
+        /* =========================================================
+           TYPEWRITER KUYRUĞU
+           - ReceiveAiChunk gelen chunk'ı karaktere bölüp kuyruğa ekler.
+           - Kuyruk ~15-30ms aralıklarla tek tek boşaltılır.
+           - Yeni chunk gelirse mevcut yazma bitmeden kaybolmaz, kuyruğa eklenir.
+           - ReceiveAiCompleted, kuyruk tamamen boşalana kadar bekler,
+             sonra cursor'ı kaldırır.
+        ========================================================= */
+
+        let charQueue = [];
+        let typingTimer = null;
+        let aiCompletedSignalReceived = false;
+        let streamingRawText = "";
+        let currentAiArticle = null;
+        let currentAiContentEl = null;
+
+        function createStreamingAiArticle() {
+            const emptyState = document.getElementById("emptyState");
+            if (emptyState) emptyState.style.display = "none";
+
+            streamingRawText = "";
+
+            const article = document.createElement("article");
+            article.id = "streaming-ai-message";
+            article.className = "message message--ai";
+
+            article.innerHTML = `
+                <span class="message-avatar message-avatar--ai">✦</span>
+                <div class="message-body">
+                    <div class="message-meta">
+                        <span class="message-author">Aura Asistan</span>
+                        <span class="message-time">
+                            ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                        </span>
+                    </div>
+                    <div class="message-bubble message-bubble--ai">
+                        <div class="markdown-content streaming-ai-content"></div>
+                    </div>
+                </div>
+            `;
+
+            messageThread.appendChild(article);
+            currentAiArticle = article;
+            currentAiContentEl = article.querySelector(".streaming-ai-content");
+        }
+
+        function typeNextChar() {
+            if (charQueue.length === 0) {
+                typingTimer = null;
+                // Kuyruk bitti; eğer backend zaten "tamamlandı" demişse şimdi bitir.
+                if (aiCompletedSignalReceived) {
+                    finalizeAiMessage();
+                }
+                return;
+            }
+
+            const ch = charQueue.shift();
+            streamingRawText += ch;
+
+            if (currentAiContentEl) {
+                currentAiContentEl.innerHTML = renderMarkdownSafe(streamingRawText);
+                appendCursorTo(currentAiContentEl);
+            }
+
+            scrollThreadToBottom();
+
+            const delay = 15 + Math.random() * 15; // ~15-30ms/karakter
+            typingTimer = setTimeout(typeNextChar, delay);
+        }
+
+        function finalizeAiMessage() {
+            if (currentAiArticle) {
+                const cursor = currentAiArticle.querySelector(".typing-cursor");
+                if (cursor) cursor.remove();
+                currentAiArticle.removeAttribute("id");
+            }
+
+            currentAiArticle = null;
+            currentAiContentEl = null;
+            streamingRawText = "";
+            charQueue = [];
+            aiCompletedSignalReceived = false;
+
+            sendBtn.disabled = false;
+            scrollThreadToBottom();
+        }
+
+        connection.on("ReceiveAiChunk", function (incomingConversationId, chunk, role) {
+
+            if (!currentAiArticle) {
+                createStreamingAiArticle();
+            }
+
+            // Chunk'taki her karakteri kuyruğa ekle
+            for (const ch of chunk) {
+                charQueue.push(ch);
+            }
+
+            if (!typingTimer) {
+                typeNextChar();
+            }
+        });
+
+        connection.on("ReceiveAiCompleted", function (incomingConversationId) {
+            aiCompletedSignalReceived = true;
+
+            // Kuyrukta hâlâ karakter varsa typeNextChar döngüsü bitince
+            // finalizeAiMessage kendini tetikleyecek. Kuyruk zaten boşsa hemen bitir.
+            if (charQueue.length === 0 && !typingTimer) {
+                finalizeAiMessage();
+            }
+        });
+
+        const micBtn = document.getElementById("micBtn");
+
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let isRecording = false;
+
+        micBtn.addEventListener("click", async function () {
+
+            if (!isRecording) {
+
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        audio: true
+                    });
+
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+
+                    mediaRecorder.ondataavailable = function (event) {
+                        if (event.data.size > 0) {
+                            audioChunks.push(event.data);
+                        }
+                    };
+
+                    mediaRecorder.onstop = async function () {
+
+                        const audioBlob = new Blob(audioChunks, {
+                            type: mediaRecorder.mimeType
+                        });
+
+                        const formData = new FormData();
+
+                        formData.append("audio", audioBlob, "voice.webm");
+
+                        try {
+
+                            const response = await fetch("/Chat/SpeechToText",
+                                {
+                                    method: "POST",
+                                    body: formData
+                                }
+                            );
+
+                            if (!response.ok) {
+                                throw new Error("Speech-to-text başarısız.");
+                            }
+
+                            const result = await response.json();
+
+                            messageInput.value = result.text || "";
+
+                            autoGrow();
+                            updateSendState();
+
+                            messageInput.focus();
+
+                        } catch (error) {
+                            console.error(error);
+                        }
+
+                        stream.getTracks().forEach(track => track.stop());
+                    };
+
+                    mediaRecorder.start();
+
+                    isRecording = true;
+
+                    micBtn.classList.add("is-recording");
+
+                } catch (error) {
+
+                    console.error("Mikrofon erişimi alınamadı:", error);
+
+                }
+
+            } else {
+
+                mediaRecorder.stop();
+
+                isRecording = false;
+
+                micBtn.classList.remove("is-recording");
+            }
+        });
+
+       let currentAudio = null;
+       document.addEventListener("click", async function (event) {
+        
+        const button = event.target.closest(".listen-btn");
+        if (!button) return;
+
+        const text = button.dataset.text;
+
+        if (!text) return;
+
+        try {
+
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            document.querySelectorAll(".listen-btn.is-playing")
+                .forEach(b => b.classList.remove("is-playing"));
+
+            button.disabled = true;
+            button.classList.add("is-loading");
+
+            const response = await fetch("/Chat/TextToSpeech", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(text)
+            });
+
+            if (!response.ok) {
+                throw new Error("Text-to-speech başarısız.");
+            }
+
+            const audioBlob = await response.blob();
+            const audioUrl = URL.createObjectURL(audioBlob);
+
+            currentAudio = new Audio(audioUrl);
+
+            button.classList.remove("is-loading");
+            button.classList.add("is-playing");
+            button.disabled = false;
+
+            currentAudio.onended = function () {
+                button.classList.remove("is-playing");
+                URL.revokeObjectURL(audioUrl);
+            };
+
+            currentAudio.onerror = function () {
+                button.disabled = false;
+                button.classList.remove("is-loading", "is-playing");
+            };
+
+            await currentAudio.play();
+
+        } catch (error) {
+            console.error(error);
+            button.disabled = false;
+            button.classList.remove("is-loading", "is-playing");
+        }
+    });
+</script>

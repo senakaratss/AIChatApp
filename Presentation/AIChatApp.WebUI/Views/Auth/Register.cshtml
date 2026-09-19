@@ -1,0 +1,303 @@
+﻿@using AIChatApp.Application.Dtos
+@model RegisterDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <style>
+        @@layer base {
+            html,body
+
+        {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overscroll-behavior: none;
+        }
+
+        main > :first-child {
+            margin-top: 0 !important;
+        }
+
+        main > :last-child {
+            margin-bottom: 0 !important;
+        }
+
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }</style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"tertiary-fixed":"#d5e4f2","on-primary":"#ffffff","surface-container-highest":"#d3e4fe","primary-container":"#7857f8","on-primary-container":"#fffbff","tertiary":"#4f5e69","on-tertiary-fixed":"#0f1d27","outline-variant":"#c9c4d8","surface-container-lowest":"#ffffff","surface-tint":"#613de0","on-tertiary-container":"#fcfcff","surface-container-low":"#eff4ff","secondary":"#5e5c70","primary-fixed":"#e6deff","surface-variant":"#d3e4fe","secondary-fixed":"#e4e0f8","error":"#ba1a1a","on-secondary":"#ffffff","tertiary-container":"#687682","primary":"#5f3add","surface-bright":"#f8f9ff","secondary-fixed-dim":"#c7c4db","on-surface-variant":"#484555","on-tertiary-fixed-variant":"#3a4853","on-tertiary":"#ffffff","inverse-on-surface":"#eaf1ff","surface-container-high":"#dce9ff","error-container":"#ffdad6","secondary-container":"#e4e0f8","outline":"#797587","inverse-surface":"#213145","surface-container":"#e5eeff","surface":"#f8f9ff","on-secondary-fixed":"#1b1a2b","on-primary-fixed":"#1c0062","on-surface":"#0b1c30","on-secondary-container":"#646276","on-background":"#0b1c30","on-primary-fixed-variant":"#4918c8","background":"#f8f9ff","on-secondary-fixed-variant":"#464558","on-error":"#ffffff","inverse-primary":"#cabeff","surface-dim":"#cbdbf5","tertiary-fixed-dim":"#b9c8d6","on-error-container":"#93000a","primary-fixed-dim":"#cabeff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin-desktop":"2.5rem","space-sm":"0.75rem","space-md":"1rem","space-2xl":"2.5rem","space-3xl":"3.5rem","space-lg":"1.5rem","gutter":"1.5rem","space-xs":"0.5rem","space-xxs":"0.25rem","margin-mobile":"1rem","space-xl":"2rem"},"fontFamily":{"display-lg-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"code-sm":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"]},"fontSize":{"display-lg-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"26px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"code-sm":["12px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.015em","fontWeight":"600"}],"title-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0.005em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"display-lg":["44px",{"lineHeight":"52px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}]}}}}</script>
+</head>
+<body class="bg-background font-body-md text-on-surface min-h-screen flex flex-col relative selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden"><div class="absolute -top-[20%] -left-[10%] w-[55vw] h-[55vw] rounded-full bg-secondary-fixed/40 blur-[130px]"></div><div class="absolute top-[10%] -right-[15%] w-[50vw] h-[50vw] rounded-full bg-surface-container-high/60 blur-[140px]"></div><div class="absolute -bottom-[20%] left-[20%] w-[60vw] h-[60vw] rounded-full bg-primary-fixed/30 blur-[150px]"></div></div>
+    <header class="fixed top-0 w-full z-50 bg-surface/75 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"><a class="flex items-center gap-space-xs group" data-path="login" href="#"><div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary via-primary-container to-secondary flex items-center justify-center shadow-[0_4px_16px_rgba(95,58,221,0.22)]"><span class="material-symbols-outlined text-on-primary text-[20px]">auto_awesome</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface leading-none">Aura<span class="text-primary font-headline-sm">AI</span></span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium tracking-wide">Intelligence Canvas</span></div></a><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-surface-container text-primary font-label-md rounded-lg"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low px-space-sm py-space-xs rounded-lg transition-colors" data-path="login" href="#">Sign In</a><a aria-current="page" class="px-space-sm py-space-xs transition-colors bg-surface-container text-primary font-label-md rounded-lg" data-path="register" href="#">Create Account</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low px-space-sm py-space-xs rounded-lg transition-colors" data-path="sso-portal" href="#">Enterprise SSO</a></nav><div class="flex items-center gap-space-sm"><div class="relative flex items-center bg-surface-container-lowest/80 backdrop-blur-md px-space-sm py-space-xxs rounded-full shadow-[0_1px_6px_rgba(100,100,150,0.06)]"><span class="material-symbols-outlined text-on-surface-variant text-[16px] mr-1.5">language</span><select aria-label="Select language and region" class="bg-transparent font-label-sm text-label-sm text-on-surface-variant focus:outline-none cursor-pointer pr-1"><option>EN · United States</option><option>ES · España</option><option>FR · France</option><option>DE · Deutschland</option><option>JA · 日本</option></select></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header>
+    <main class="w-full pt-16 flex-1 flex flex-col items-center justify-center">
+        <div class="flex flex-col w-full">
+            <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 flex flex-col items-center justify-center relative">
+                <div class="w-full max-w-[540px] relative z-10">
+                    <div class="bg-surface-container-lowest/90 backdrop-blur-2xl rounded-[20px] shadow-[0_20px_50px_rgba(100,100,160,0.08)] p-6 sm:p-10 flex flex-col">
+                        <!-- Header Group -->
+                        <div class="flex flex-col items-center text-center mb-8">
+                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed/50 text-primary font-label-sm text-label-sm mb-3">
+                                <span class="material-symbols-outlined text-[14px]">bolt</span>
+                                <span>Instant Workspace Access</span>
+                            </div>
+                            <h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Create your Aura account</h1>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1.5 max-w-sm">
+                                Experience intelligent real-time conversational assistance
+                            </p>
+                        </div>
+                        <!-- Quick SSO Federation -->
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <button class="flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all duration-200 hover:-translate-y-0.5 shadow-sm" type="button">
+                                <svg class="w-4 h-4" viewbox="0 0 24 24">
+                                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+                                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+                                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+                                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+                                </svg>
+                                <span>Google</span>
+                            </button>
+                            <button class="flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all duration-200 hover:-translate-y-0.5 shadow-sm" type="button">
+                                <svg class="w-4 h-4" viewbox="0 0 23 23">
+                                    <path d="M1 1h10v10H1z" fill="#f35325"></path>
+                                    <path d="M12 1h10v10H12z" fill="#81bc06"></path>
+                                    <path d="M1 12h10v10H1z" fill="#05a6f0"></path>
+                                    <path d="M12 12h10v10H12z" fill="#ffba08"></path>
+                                </svg>
+                                <span>Microsoft</span>
+                            </button>
+                        </div>
+                        <!-- Section Divider -->
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="h-px bg-surface-variant flex-1"></div>
+                            <span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">or continue with email</span>
+                            <div class="h-px bg-surface-variant flex-1"></div>
+                        </div>
+                        <!-- Registration Form (ASP.NET Core Razor Ready) -->
+                        <form class="flex flex-col gap-4" id="registerForm" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-error"></div>
+                            <!-- Name split row -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                <!-- First Name -->
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="font-label-sm text-label-sm text-on-surface" for="FirstName">First Name</label>
+                                    <div class="relative flex items-center">
+                                        <span class="material-symbols-outlined absolute left-3 text-secondary text-[19px] pointer-events-none">person</span>
+                                        <input asp-for="Name" class="w-full bg-surface-container-lowest rounded-xl pl-9 pr-3.5 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline-variant shadow-[0_2px_8px_rgba(100,100,150,0.04)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-surface-bright transition-all duration-200" id="FirstName" placeholder="Elena" required="" type="text" />
+                                    </div>
+                                </div>
+                                <!-- Last Name -->
+                                <div class="flex flex-col gap-1.5">
+                                    <label class="font-label-sm text-label-sm text-on-surface" for="LastName">Last Name</label>
+                                    <div class="relative flex items-center">
+                                        <span class="material-symbols-outlined absolute left-3 text-secondary text-[19px] pointer-events-none">badge</span>
+                                        <input asp-for="Surname" class="w-full bg-surface-container-lowest rounded-xl pl-9 pr-3.5 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline-variant shadow-[0_2px_8px_rgba(100,100,150,0.04)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-surface-bright transition-all duration-200" id="LastName" placeholder="Rostova" required="" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Email Address -->
+                            <div class="flex flex-col gap-1.5">
+                                <label class="font-label-sm text-label-sm text-on-surface" for="Email">Work Email</label>
+                                <div class="relative flex items-center">
+                                    <span class="material-symbols-outlined absolute left-3 text-secondary text-[19px] pointer-events-none">mail</span>
+                                    <input asp-for="Email" class="w-full bg-surface-container-lowest rounded-xl pl-9 pr-3.5 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline-variant shadow-[0_2px_8px_rgba(100,100,150,0.04)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-surface-bright transition-all duration-200" id="Email" placeholder="elena.rostova@enterprise.com" required="" type="email" />
+                                </div>
+                            </div>
+                            <!-- Password Field -->
+                            <div class="flex flex-col gap-1.5">
+                                <label class="font-label-sm text-label-sm text-on-surface" for="Password">Password</label>
+                                <div class="relative flex items-center">
+                                    <span class="material-symbols-outlined absolute left-3 text-secondary text-[19px] pointer-events-none">lock</span>
+                                    <input asp-for="Password" class="w-full bg-surface-container-lowest rounded-xl pl-9 pr-10 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline-variant shadow-[0_2px_8px_rgba(100,100,150,0.04)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-surface-bright transition-all duration-200" id="Password" placeholder="Create a strong password" required="" type="password" />
+                                    <button aria-label="Toggle password visibility" class="absolute right-3 text-secondary hover:text-on-surface transition-colors focus:outline-none flex items-center" id="togglePassword" type="button">
+                                        <span class="material-symbols-outlined text-[19px]" id="eyeIcon">visibility</span>
+                                    </button>
+                                </div>
+                                <!-- Dynamic Password Strength Indicator -->
+                                <div class="pt-1.5 flex flex-col gap-1.5">
+                                    <div class="grid grid-cols-4 gap-1.5 w-full">
+                                        <div class="h-1 rounded-full bg-surface-variant transition-colors duration-300" id="meter1"></div>
+                                        <div class="h-1 rounded-full bg-surface-variant transition-colors duration-300" id="meter2"></div>
+                                        <div class="h-1 rounded-full bg-surface-variant transition-colors duration-300" id="meter3"></div>
+                                        <div class="h-1 rounded-full bg-surface-variant transition-colors duration-300" id="meter4"></div>
+                                    </div>
+                                    <div class="flex items-center justify-between font-label-sm text-label-sm">
+                                        <span class="text-on-surface-variant text-[11px]">Password Strength</span>
+                                        <span class="font-medium text-tertiary text-[11px]" id="strengthText">Enter password</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Confirm Password Field -->
+                            <div class="flex flex-col gap-1.5">
+                                <label class="font-label-sm text-label-sm text-on-surface" for="ConfirmPassword">Confirm Password</label>
+                                <div class="relative flex items-center">
+                                    <span class="material-symbols-outlined absolute left-3 text-secondary text-[19px] pointer-events-none">verified_user</span>
+                                    <input asp-for="ConfirmPassword" class="w-full bg-surface-container-lowest rounded-xl pl-9 pr-10 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline-variant shadow-[0_2px_8px_rgba(100,100,150,0.04)] focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-surface-bright transition-all duration-200" id="ConfirmPassword" placeholder="Re-enter password" required="" type="password" />
+                                    <span class="material-symbols-outlined absolute right-3 text-[19px] text-surface-variant transition-colors" id="matchIcon">check_circle</span>
+                                </div>
+                                <div class="hidden text-[11px] font-label-sm font-medium" id="matchMessage"></div>
+                            </div>
+                            <!-- Terms and conditions checkbox -->
+                            <div class="pt-1 flex items-start gap-2.5 cursor-pointer">
+                                <input class="mt-1 w-4 h-4 rounded text-primary focus:ring-primary/30 accent-primary cursor-pointer" id="TermsAccepted" name="TermsAccepted" required="" type="checkbox" />
+                                <label class="font-body-sm text-body-sm text-on-surface-variant cursor-pointer select-none leading-tight" for="TermsAccepted">
+                                    I agree to the
+                                    <a class="text-primary font-medium hover:underline" data-path="terms-of-service" href="#">Terms of Service</a>
+                                    and acknowledge the
+                                    <a class="text-primary font-medium hover:underline" data-path="privacy-policy" href="#">Privacy Policy</a>.
+                                </label>
+                            </div>
+                            <!-- Submit CTA -->
+                            <button class="mt-2 w-full py-3 px-6 rounded-xl bg-gradient-to-r from-primary via-primary-container to-surface-tint hover:opacity-95 text-on-primary font-title-md text-title-md shadow-[0_8px_24px_rgba(95,58,221,0.28)] hover:shadow-[0_12px_28px_rgba(95,58,221,0.36)] transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2 group" type="submit">
+                                <span>Create Account</span>
+                                <span class="material-symbols-outlined text-[20px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+                            </button>
+                        </form>
+                        <!-- Switch to Sign In Footer -->
+                        <div class="mt-6 pt-5 bg-surface-container-low/50 rounded-xl px-4 py-3 flex items-center justify-center gap-1.5 text-center">
+                            <span class="font-body-sm text-body-sm text-on-surface-variant">Already have an account?</span>
+                            <a class="font-label-md text-label-md text-primary font-semibold hover:underline flex items-center gap-0.5" data-path="login" href="#">
+                                <span>Sign in</span>
+                                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Secure connection and trust marker -->
+                    <div class="mt-4 flex items-center justify-center gap-4 text-on-surface-variant/80 font-label-sm text-label-sm">
+                        <div class="flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[15px] text-tertiary">lock</span>
+                            <span>256-bit TLS Encryption</span>
+                        </div>
+                        <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                        <div class="flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[15px] text-tertiary">verified</span>
+                            <span>SOC2 Type II Certified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function initRegistrationLogic() {
+              const passwordInput = document.getElementById('Password');
+              const confirmPasswordInput = document.getElementById('ConfirmPassword');
+              const toggleBtn = document.getElementById('togglePassword');
+              const eyeIcon = document.getElementById('eyeIcon');
+              const matchIcon = document.getElementById('matchIcon');
+              const matchMessage = document.getElementById('matchMessage');
+
+              const meters = [
+                document.getElementById('meter1'),
+                document.getElementById('meter2'),
+                document.getElementById('meter3'),
+                document.getElementById('meter4')
+              ];
+              const strengthText = document.getElementById('strengthText');
+
+              if (toggleBtn && passwordInput && eyeIcon) {
+                toggleBtn.addEventListener('click', () => {
+                  const isPassword = passwordInput.getAttribute('type') === 'password';
+                  passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+                  eyeIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+                });
+              }
+
+              function evaluatePassword(val) {
+                if (!val) return 0;
+                let score = 0;
+                if (val.length >= 8) score += 1;
+                if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score += 1;
+                if (/\d/.test(val)) score += 1;
+                if (/[^A-Za-z0-9]/.test(val)) score += 1;
+                return score;
+              }
+
+              if (passwordInput) {
+                passwordInput.addEventListener('input', (e) => {
+                  const val = e.target.value;
+                  const score = evaluatePassword(val);
+
+                  meters.forEach((meter) => {
+                    meter.className = 'h-1 rounded-full bg-surface-variant transition-colors duration-300';
+                  });
+
+                  if (score === 0) {
+                    strengthText.textContent = 'Enter password';
+                    strengthText.className = 'font-medium text-tertiary text-[11px]';
+                  } else if (score === 1) {
+                    meters[0].classList.replace('bg-surface-variant', 'bg-error');
+                    strengthText.textContent = 'Weak';
+                    strengthText.className = 'font-medium text-error text-[11px]';
+                  } else if (score === 2) {
+                    meters[0].classList.replace('bg-surface-variant', 'bg-secondary');
+                    meters[1].classList.replace('bg-surface-variant', 'bg-secondary');
+                    strengthText.textContent = 'Fair';
+                    strengthText.className = 'font-medium text-secondary text-[11px]';
+                  } else if (score === 3) {
+                    meters[0].classList.replace('bg-surface-variant', 'bg-primary-container');
+                    meters[1].classList.replace('bg-surface-variant', 'bg-primary-container');
+                    meters[2].classList.replace('bg-surface-variant', 'bg-primary-container');
+                    strengthText.textContent = 'Good';
+                    strengthText.className = 'font-medium text-primary text-[11px]';
+                  } else {
+                    meters.forEach(meter => {
+                      meter.classList.replace('bg-surface-variant', 'bg-primary');
+                    });
+                    strengthText.textContent = 'Strong password';
+                    strengthText.className = 'font-medium text-primary font-bold text-[11px]';
+                  }
+
+                  validatePasswordMatch();
+                });
+              }
+
+              function validatePasswordMatch() {
+                if (!confirmPasswordInput) return;
+                const pwd = passwordInput.value;
+                const cpwd = confirmPasswordInput.value;
+
+                if (!cpwd) {
+                  matchIcon.className = 'material-symbols-outlined absolute right-3 text-[19px] text-surface-variant transition-colors';
+                  matchMessage.classList.add('hidden');
+                  return;
+                }
+
+                if (pwd === cpwd) {
+                  matchIcon.className = 'material-symbols-outlined absolute right-3 text-[19px] text-primary transition-colors';
+                  matchMessage.textContent = 'Passwords match';
+                  matchMessage.className = 'text-[11px] font-label-sm font-medium text-primary';
+                  matchMessage.classList.remove('hidden');
+                } else {
+                  matchIcon.className = 'material-symbols-outlined absolute right-3 text-[19px] text-error transition-colors';
+                  matchMessage.textContent = 'Passwords do not match';
+                  matchMessage.className = 'text-[11px] font-label-sm font-medium text-error';
+                  matchMessage.classList.remove('hidden');
+                }
+              }
+
+              if (confirmPasswordInput) {
+                confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+              }
+            })();
+        </script>
+    </main>
+    <footer class="w-full bg-surface-container-lowest/70 backdrop-blur-md shadow-[0_-1px_6px_rgba(0,0,0,0.02)] mt-auto py-space-md"><div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm"><span>© 2025 Aura AI Inc. All rights reserved.</span><span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span><span class="text-tertiary font-code-sm text-code-sm">v2.4.0-cloud</span></div><div class="flex flex-wrap items-center justify-center gap-space-md"><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="privacy-policy" href="#">Privacy Policy</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="terms-of-service" href="#">Terms of Service</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="support" href="#">Support</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface flex items-center gap-1 transition-colors" data-path="system-status" href="#"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>Systems Operational</a></div></div></footer>
+</body>
+</html>
